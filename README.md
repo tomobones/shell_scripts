@@ -1,3 +1,3 @@
-# shell_scripts
+# SHELL_SCRIPTS
 
-playing and using in my every day's usage of computers
+Playing and using in my every day's usage of computers.
