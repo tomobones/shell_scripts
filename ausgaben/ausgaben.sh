@@ -27,7 +27,9 @@ sum()
         tr , . |\
         paste -sd+ - > tmp.txt
 
-    test -s tmp.txt && cat "tmp.txt" | bc || echo "0.00"
+    test -s tmp.txt \
+        && cat "tmp.txt" | bc | sed 's/\./,/g' \
+        || echo "0,00"
     rm tmp.txt
 }
 
