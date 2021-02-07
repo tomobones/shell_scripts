@@ -11,14 +11,14 @@ do
 		space="${BASH_REMATCH[1]}"
 		file="${BASH_REMATCH[2]}"
 
-		printf "%s%s\n" "$space" "~~~c"
+		printf "\n%s%s\n" "$space" "~~~c"
 		sed "s/^.*$/$space&/" ".$file"
-		printf "%s%s\n" "$space" "~~~"
+		printf "%s%s\n\n" "$space" "~~~"
 	elif [[ "$line" =~ $regex_img ]]
 	then
 		space="${BASH_REMATCH[1]}"
 		file="${BASH_REMATCH[2]}"
-		printf "%s![](.%s)\n" "$space" "$file"
+		printf "\n%s![](.%s)\n\n" "$space" "$file"
 	else
 		printf "%s\n" "$line"
 	fi
