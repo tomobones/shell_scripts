@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo -e "\033[1;31mname:\033[0m        $0"
+echo -e "\033[1;31mnumber args:\033[0m $#"
+echo -e "\033[1;31margs:\033[0m        $@"
+echo ""
+
+longline () {
+        var=0
+        maxline=30
+        while test $var -le $maxline
+        do
+        {   
+                printf "-" 
+                let var=$var+1
+        }   
+        done
+        printf "\n"
+}
+
+if test $# -gt 1
+then
+{
+        for file in $@
+        do  
+        {   
+                longline
+                printf "\033[1;31m>>>> FILE: $file \033[0m \n\n"
+                cat $file
+                printf "\n\n"
+        }   
+        done
+} else {
+        echo "no arguments!"
+}
+fi
+
+printf "\n"
