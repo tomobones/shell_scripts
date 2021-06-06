@@ -12,7 +12,7 @@ do
 		file="${BASH_REMATCH[2]}"
 
 		printf "\n%s%s\n" "$space" "~~~c"
-		sed "s/^.*$/$space&/" ".$file"
+		sed -e "s/^.*$/$space&/; s/\*/\\\*/g; s/_/U/g" ".$file"
 		printf "%s%s\n\n" "$space" "~~~"
 	elif [[ "$line" =~ $regex_img ]]
 	then
