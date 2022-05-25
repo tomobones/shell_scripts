@@ -11,3 +11,5 @@ Some one-liners (or not much more than one line) for my dayly automated work.
 - **vbdark** loads virtual box in dark mode after installing prerequisite modules
 
 - **countdoun** counting down five seconds displaying each second on the console
+
+- **genpass** generates password with 32 alphanumeric characters
