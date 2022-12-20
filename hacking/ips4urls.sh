@@ -1,4 +1,8 @@
 #!/usr/bin/bash
+
+# useage:
+# > cat urls.txt | ./whois4ips.sh
+
 while read url; do
 	host $url | sed -n -e 's/.* \([0-9\.]\{7,15\}\).*$/\1/p' >> ips_unsorted
 done
