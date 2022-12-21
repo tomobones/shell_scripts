@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+while read url; do
+	printf "\n\e[34m%s\e[0m\n" "# curl -is http://$url"
+	curl -isL --connect-timeout 3 "http://$url" | sed -n -e '/HTTP/p' -e '/Location/p' -e '/Strict-Transport/p' -e '/[Nn]ginx\|[Ww]indows\|WINDOWS\|[Mm]icrosoft\|MICROSOFT\|[aA]pache/p'
+done
