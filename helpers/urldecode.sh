@@ -1,4 +1,4 @@
 #!/usr/bin/bash
-    
-string=$1
-printf '%b\n' "${string//%/\\x}"
+while read string ; do
+    printf '%b\n' "${string//%/\\x}"
+done
