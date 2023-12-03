@@ -4,4 +4,5 @@ url='https://genussapp-api-mt.konkaapps.de'
 endpoint='kms-mt-webservices/webresources/entity.speiseplanadvanced/getdata/3371/1'
 authkey='d3NfbGl2ZV91c2VyOkF0TXM0SEd5RSFWTjc='
 json=$(curl -s -H "Authorization: Basic $authkey" "$url/$endpoint")
-echo $json | jq | grep -E '(datum|gerichtname)'
+echo $json
+# jq | grep -E '(datum|gerichtname)'
