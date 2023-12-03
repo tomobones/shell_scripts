@@ -4,5 +4,17 @@ url='https://genussapp-api-mt.konkaapps.de'
 endpoint='kms-mt-webservices/webresources/entity.speiseplanadvanced/getdata/3371/1'
 authkey='d3NfbGl2ZV91c2VyOkF0TXM0SEd5RSFWTjc='
 json=$(curl -s -H "Authorization: Basic $authkey" "$url/$endpoint")
-echo $json
-# jq | grep -E '(datum|gerichtname)'
+
+echo $json | jq '.[].speiseplanGerichtData.[] | {"datum": .speiseplanAdvancedGericht.datum, "name": .speiseplanAdvancedGericht.gerichtname, "gäste-preis": .zusatzinformationen.gaestepreisDecimal2, "kcal": .zusatzinformationen.nwkcalInteger, "zucker": .zusatzinformationen.nwzuckerDecimal1, "fett": .zusatzinformationen.nwfettDecimal1, "allergene": .allergeneIds, "zusätze": .zusatzstoffeIds, "merkmale": .gerichtsmerkmaleIds}'
+
+#| tr -d '\\"'
+
+# TODO
+# format nicely
+# help | verbose | date 
+# ask for installed jq 'which jq'
+# replace '\n' by blank
+# remove '\"' completely
+# remove first and last blank
+
+#echo $json | jq '.[].speiseplanGerichtData.[]'
