@@ -5,7 +5,9 @@ endpoint='kms-mt-webservices/webresources/entity.speiseplanadvanced/getdata/3371
 authkey='d3NfbGl2ZV91c2VyOkF0TXM0SEd5RSFWTjc='
 json=$(curl -s -H "Authorization: Basic $authkey" "$url/$endpoint")
 
-echo $json | jq '.[].speiseplanGerichtData.[] | {"datum": .speiseplanAdvancedGericht.datum, "name": .speiseplanAdvancedGericht.gerichtname, "gäste-preis": .zusatzinformationen.gaestepreisDecimal2, "kcal": .zusatzinformationen.nwkcalInteger, "zucker": .zusatzinformationen.nwzuckerDecimal1, "fett": .zusatzinformationen.nwfettDecimal1, "allergene": .allergeneIds, "zusätze": .zusatzstoffeIds, "merkmale": .gerichtsmerkmaleIds}'
+json_red=$(echo $json | jq '.[].speiseplanGerichtData.[] | {"datum": .speiseplanAdvancedGericht.datum, "name": .speiseplanAdvancedGericht.gerichtname, "gäste-preis": .zusatzinformationen.gaestepreisDecimal2, "kcal": .zusatzinformationen.nwkcalInteger, "zucker": .zusatzinformationen.nwzuckerDecimal1, "fett": .zusatzinformationen.nwfettDecimal1, "allergene": .allergeneIds, "zusätze": .zusatzstoffeIds, "merkmale": .gerichtsmerkmaleIds}')
+
+echo $json_red
 
 #| tr -d '\\"'
 
