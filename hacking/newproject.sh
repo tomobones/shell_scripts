@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create folder structure
-mkdir -p exploits www notes nmap
+mkdir -p exploits www notes logs artefacts
 echo "[+] All folders created."
 
 # create notes
