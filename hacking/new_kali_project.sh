@@ -4,8 +4,11 @@
 mkdir -p exploits www notes logs artefacts
 echo "[+] All folders created."
 
-# create notes
-touch www/index.md
+# create files
+printf "# project\n\n## exploitation path\n- one\n- two\n\n## notes\n\n## ideas\n- [ ] one\n- [ ] two\n\n## nmap" >> notes/index.md
+touch hosts.txt
+printf "#!/bin/bash\nexport IP=X.X.X.X\nexport ME=X.X.X.X" > envars.sh && chmod +x envars.sh
+
 echo "[+] www/index.md created."
 
 # create payloads
