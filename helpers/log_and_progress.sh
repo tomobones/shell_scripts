@@ -4,50 +4,54 @@ COUNT=0
 TOTAL=100
 PROGRESS_ENABLE="false"
 
+function logdate() {
+    date "+%Y.%m.%d %H:%M:%S %3N"
+}
+
 function log_info() {
     if [ "$PROGRESS_ENABLE" == "false" ]; then
-        printf "\e[37m[+] %s\e[0m\n" "$1"
+        printf "\e[37m[+] %s %s\e[0m\n" "$(logdate)" "$1"
         return
     fi
     tput rc
     tput el
-    printf "\e[37m[+] %s\e[0m\n" "$1"
+    printf "\e[37m[+] %s %s\e[0m\n" "$(logdate)" "$1"
     tput sc
     progress_increase
 }
 
 function log_warn() {
     if [ "$PROGRESS_ENABLE" == "false" ]; then
-        printf "\e[33m[+] %s\e[0m\n" "$1"
+        printf "\e[33m[+] %s %s\e[0m\n" "$(logdate)" "$1"
         return
     fi
     tput rc
     tput el
-    printf "\e[33m[+] %s\e[0m\n" "$1"
+    printf "\e[33m[+] %s %s\e[0m\n" "$(logdate)" "$1"
     tput sc
     progress_increase
 }
 
 function log_error() {
     if [ "$PROGRESS_ENABLE" == "false" ]; then
-        printf "\e[31m[+] %s\e[0m\n" "$1"
+        printf "\e[31m[+] %s %s\e[0m\n" "$(logdate)" "$1"
         return
     fi
     tput rc
     tput el
-    printf "\e[31m[+] %s\e[0m\n" "$1"
+    printf "\e[31m[+] %s %s\e[0m\n" "$(logdate)" "$1"
     tput sc
     progress_increase
 }
 
 function log_success() {
     if [ "$PROGRESS_ENABLE" == "false" ]; then
-        printf "\e[34m[+] %s\e[0m\n" "$1"
+        printf "\e[34m[+] %s %s\e[0m\n" "$(logdate)" "$1"
         return
     fi
     tput rc
     tput el
-    printf "\e[34m[+] %s\e[0m\n" "$1"
+    printf "\e[34m[+] %s %s\e[0m\n" "$(logdate)" "$1"
     tput sc
     progress_increase
 }
