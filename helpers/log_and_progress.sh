@@ -5,29 +5,49 @@ TOTAL=100
 PROGRESS_ENABLE="false"
 
 function log_info() {
-    log "\e[37m[+] $1\e[0m\n"
-}
-
-function log_warn() {
-    log "\e[33m[!] $1\e[0m\n"
-}
-
-function log_error() {
-    log "\e[31m[!] $1\e[0m\n"
-}
-
-function log_success() {
-    log "\e[34m[+] $1\e[0m\n"
-}
-
-function log() {
     if [ "$PROGRESS_ENABLE" == "false" ]; then
-        printf "$1"
+        printf "\e[37m[+] %s\e[0m\n" "$1"
         return
     fi
     tput rc
     tput el
-    printf "$1"
+    printf "\e[37m[+] %s\e[0m\n" "$1"
+    tput sc
+    progress_increase
+}
+
+function log_warn() {
+    if [ "$PROGRESS_ENABLE" == "false" ]; then
+        printf "\e[33m[+] %s\e[0m\n" "$1"
+        return
+    fi
+    tput rc
+    tput el
+    printf "\e[33m[+] %s\e[0m\n" "$1"
+    tput sc
+    progress_increase
+}
+
+function log_error() {
+    if [ "$PROGRESS_ENABLE" == "false" ]; then
+        printf "\e[31m[+] %s\e[0m\n" "$1"
+        return
+    fi
+    tput rc
+    tput el
+    printf "\e[31m[+] %s\e[0m\n" "$1"
+    tput sc
+    progress_increase
+}
+
+function log_success() {
+    if [ "$PROGRESS_ENABLE" == "false" ]; then
+        printf "\e[34m[+] %s\e[0m\n" "$1"
+        return
+    fi
+    tput rc
+    tput el
+    printf "\e[34m[+] %s\e[0m\n" "$1"
     tput sc
     progress_increase
 }
@@ -41,7 +61,6 @@ function progress_start() {
 }
 
 function progress_increase() {
-    let COUNT++
     cols=$(tput cols)
     label=$(printf "Progress: %d/%d " $COUNT $TOTAL)
     bar_width=$((cols - ${#label} - 1))  # 10 = Puffer für [ ] & Abstand
@@ -68,9 +87,10 @@ function progress_end() {
 
 # example code
 progress_start
-log_info 'before start'
+log_success 'Starting Script'
 for ((i = 1; i <= TOTAL; i++)); do
-    log_warn "Doing step $i"
+    let COUNT++
+    log_info "Doing step $i"
     sleep 0.03
 done
 progress_end
