@@ -37,7 +37,7 @@ function progress_start() {
     PROGRESS_ENABLE="true"
     #tput clear #enable to start on the bottom
     tput civis
-    trap 'progress_end; log_info "Script interrupted"; exit 1' SIGINT SIGTERM
+    trap 'progress_end; log_info "Script interrupted at iteration $COUNT from $TOTAL"; exit 1' SIGINT SIGTERM
 }
 
 function progress_increase() {
@@ -73,3 +73,4 @@ for ((i = 1; i <= TOTAL; i++)); do
     sleep 0.03
 done
 progress_end
+log_success "Successfully fulfilled all $TOTAL iterations"
