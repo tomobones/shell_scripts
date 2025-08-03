@@ -2,7 +2,7 @@
 
 COUNT=0
 TOTAL=100
-ENABLE_PROGRESSBAR="false"
+PROGRESS_ENABLE="false"
 
 function log_info() {
     log "\e[37m[+] $1\e[0m\n"
@@ -45,14 +45,15 @@ function progress_increase() {
     cols=$(tput cols)
     label=$(printf "Progress: %d/%d " $COUNT $TOTAL)
     bar_width=$((cols - ${#label} - 1))  # 10 = Puffer für [ ] & Abstand
-    bar_filled=$(printf "\e[34m%0.s█\e[0m" $(seq 1 $filled))
-    bar_empty=$(printf "\e[30m%0.s█\e[0m" $(seq 1 $empty))
     if [ "$COUNT" -lt "$TOTAL" ]; then
         filled=$((COUNT * bar_width / TOTAL))
         empty=$((bar_width - filled))
+        bar_filled=$(printf "\e[34m%0.s█\e[0m" $(seq 1 $filled))
+        bar_empty=$(printf "\e[30m%0.s█\e[0m" $(seq 1 $empty))
         printf "%s%s%s" "$label" "$bar_filled" "$bar_empty"
     else
         filled=$bar_width
+        bar_filled=$(printf "\e[34m%0.s█\e[0m" $(seq 1 $filled))
         printf "%s%s" "$label" "$bar_filled"
     fi
 }
