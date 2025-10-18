@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create folder structure
-mkdir -p exploits www notes logs artefacts smb code
+mkdir -p exploits www notes logs artefacts smb webdav scripts
 echo "[+] All folders created."
 
 # create files
