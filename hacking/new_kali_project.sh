@@ -1,13 +1,30 @@
 #!/bin/bash
 
 # create folder structure
-mkdir -p exploits www notes logs artefacts share
+mkdir -p exploits www notes logs artefacts smb code
 echo "[+] All folders created."
 
 # create files
-printf "# project\n\n## exploitation path\n- one\n- two\n\n## notes\n\n## ideas\n- [ ] one\n- [ ] two\n\n## nmap" >> notes/index.md
+## notes/index.md
+printf "# project\n
+## exploitation path
+- TODO\n
+## findings\n
+## ideas
+- [ ] TODO\n
+## nmap" > notes/index.md
+
+## host file
 touch hosts.txt
-printf "#!/bin/bash\nexport IP=X.X.X.X\nexport ME=X.X.X.X" > envars.sh && chmod +x envars.sh
+
+## envars
+printf "export IP=X.X.X.X
+export ME=X.X.X.X
+export WL_DIR='/usr/share/seclists/Discovery/Web-Content/'
+export WL='directory-list-2.3-medium.txt'
+#export WL='raft-medium-files-lowercase.txt'
+#export WL='raft-medium-directories-lowercase.txt'
+export PORT=80" > envars
 
 echo "[+] www/index.md created."
 
